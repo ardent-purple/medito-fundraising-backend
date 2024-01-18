@@ -2,10 +2,22 @@ import Koa from 'koa'
 import Router from 'koa-router'
 import bodyParser from 'koa-bodyparser'
 import cors from '@koa/cors'
-import { Server } from 'http'
+import fs from 'fs'
+import path from 'path'
+import https from 'https'
 import { bootstrapControllers } from 'amala'
 import { resolve } from 'path'
 import env from '@/helpers/env'
+
+const HTTPS_CONFIG = {
+  key: fs
+    .readFileSync(path.resolve(process.cwd(), 'certs/privkey.pem'), 'utf8')
+    .toString(),
+
+  cert: fs
+    .readFileSync(path.resolve(process.cwd(), 'certs/fullchain.pem'), 'utf8')
+    .toString(),
+}
 
 const app = new Koa()
 
@@ -22,13 +34,10 @@ export default async function () {
   app.use(bodyParser())
   app.use(router.routes())
   app.use(router.allowedMethods())
-  return new Promise<Server>((resolve, reject) => {
-    const connection = app
-      .listen(env.PORT)
-      .on('listening', () => {
-        console.log(`HTTP is listening on ${env.PORT}`)
-        resolve(connection)
-      })
-      .on('error', reject)
+
+  const cb = app.callback()
+  const server = https.createServer(HTTPS_CONFIG, cb)
+  server.listen(env.PORT, function () {
+    console.log(`HTTPS server listening on ${env.PORT}`)
   })
 }
