@@ -11,11 +11,11 @@ import env from '@/helpers/env'
 
 const HTTPS_CONFIG = {
   key: fs
-    .readFileSync(path.resolve(process.cwd(), 'certs/private-key.pem'), 'utf8')
+    .readFileSync(path.resolve(process.cwd(), 'certs/privkey.pem'), 'utf8')
     .toString(),
 
   cert: fs
-    .readFileSync(path.resolve(process.cwd(), 'certs/certificate.pem'), 'utf8')
+    .readFileSync(path.resolve(process.cwd(), 'certs/fullchain.pem'), 'utf8')
     .toString(),
 }
 

@@ -12,18 +12,17 @@ OUTPUT_DIR="certs"
 # Create the output directory if it doesn't exist
 mkdir -p "$OUTPUT_DIR"
 
-# Generate a private key
-openssl genpkey -algorithm RSA -out "$OUTPUT_DIR/private-key.pem"
+openssl genpkey -algorithm RSA -out "$OUTPUT_DIR/privkey.pem"
 
 # Generate a Certificate Signing Request (CSR)
-openssl req -new -key "$OUTPUT_DIR/private-key.pem" -out "$OUTPUT_DIR/certificate.csr" -subj "//CN=$COMMON_NAME"
+openssl req -new -key "$OUTPUT_DIR/privkey.pem" -out "$OUTPUT_DIR/fullchain.csr" -subj "//CN=$COMMON_NAME"
 
 # Generate a self-signed certificate using the private key and CSR
-openssl x509 -req -days $DAYS_VALID -in "$OUTPUT_DIR/certificate.csr" -signkey "$OUTPUT_DIR/private-key.pem" -out "$OUTPUT_DIR/certificate.pem"
+openssl x509 -req -days $DAYS_VALID -in "$OUTPUT_DIR/fullchain.csr" -signkey "$OUTPUT_DIR/privkey.pem" -out "$OUTPUT_DIR/fullchain.pem"
 
 # Display information about the generated certificate
-openssl x509 -in "$OUTPUT_DIR/certificate.pem" -noout -text
+openssl x509 -in "$OUTPUT_DIR/fullchain.pem" -noout -text
 
 echo "Self-signed certificate created successfully."
-echo "Private key: $OUTPUT_DIR/private-key.pem"
-echo "Certificate: $OUTPUT_DIR/certificate.pem"
+echo "Private key: $OUTPUT_DIR/privkey.pem"
+echo "Certificate: $OUTPUT_DIR/fullchain.pem"
