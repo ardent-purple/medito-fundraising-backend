@@ -7,8 +7,9 @@
 
 ## Environment variables
 
-| Name   | Description                               |
-| ------ | ----------------------------------------- |
-| `PORT` | Port to run server on (defaults to 42069) |
+| Name                    | Description                               |
+| ----------------------- | ----------------------------------------- |
+| `PORT`                  | Port to run server on (defaults to 42069) |
+| `STRIPE_SECRET_API_KEY` | Your secret Stripe API key                |
 
 Also, please, consider looking at `.env.sample`.
