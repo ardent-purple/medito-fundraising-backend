@@ -13,12 +13,12 @@
     "experimentalDecorators": true,
     "strict": true,
     "useUnknownInCatchVariables": false,
-    "noImplicitOverride": true,      
+    "noImplicitOverride": true,
     "exactOptionalPropertyTypes": true,
-    "noPropertyAccessFromIndexSignature": true, 
-    "esModuleInterop": true,         
-    "allowSyntheticDefaultImports": true, 
-    "skipLibCheck": true 
+    "noPropertyAccessFromIndexSignature": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
