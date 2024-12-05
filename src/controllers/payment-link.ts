@@ -11,7 +11,7 @@ export default class PaymentLinkController {
   ) {
     const productName = 'Donation'
     const presetDonationCurrency = currency || 'usd'
-    const presetDonationInCents = amount || 1000 // use the provided amount or default to 500 cents
+    const presetDonationInCents = amount || 30000 // 300$
 
     try {
       const responsePrice = await axios.post(
