@@ -10,7 +10,7 @@ export default class PaymentLinkController {
     @Query('amount') amount: number
   ) {
     const productName = 'Donation'
-    const presetDonationCurrency = currency || 'usd'
+    const presetDonationCurrency = currency || 'gbp'
     const presetDonationInCents = amount || 30000 // 300$
 
     try {
