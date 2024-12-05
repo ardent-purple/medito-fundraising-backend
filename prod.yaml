@@ -1,0 +1,6 @@
+services:
+  medito-fundraising-backend:
+    build:
+      context: .
+    ports:
+      - 127.0.0.1:6969:6969
